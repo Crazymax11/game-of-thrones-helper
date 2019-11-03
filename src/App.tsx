@@ -5,12 +5,17 @@ import MightOrderDescription from './components/OrderDescription/MightOrderDescr
 import AttackOrderDescription from './components/OrderDescription/AttackOrderDescription'
 import DefenseOrderDescription from './components/OrderDescription/DefenseOrderDescription'
 import RaidOrderDescription from './components/OrderDescription/RaidOrderDescription'
+import Battle from './components/Battle/index'
+import Recruitment from './components/Recruitment/index'
+
+import './App.css';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+
 
 const App: React.FC = () => {
   return (
@@ -23,6 +28,8 @@ const App: React.FC = () => {
           <Route path="/orders/attack">  <AttackOrderDescription/> </Route>
           <Route path="/orders/defense">  <DefenseOrderDescription/> </Route>
           <Route path="/orders/raid">  <RaidOrderDescription/> </Route>
+          <Route path="/battle"> <Battle/> </Route>
+          <Route path="/recruitment"> <Recruitment/> </Route>
         </Switch>
       </Layout>
     </Router>

@@ -33,7 +33,7 @@ export default function Layout({children}: InferProps<typeof Layout.propTypes>) 
     return <LayoutWrapper>
         <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
         <div>
-            {isNavBarVisible && [<Overlay/> ,<NavBarWrapper><NavBar/></NavBarWrapper>]}
+            {isNavBarVisible && [<Overlay onClick={() => toggleNavBar(!isNavBarVisible)}/> ,<NavBarWrapper><NavBar/></NavBarWrapper>]}
             <ContentWrapper>{children}</ContentWrapper>
         </div>
         

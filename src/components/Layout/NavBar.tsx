@@ -24,5 +24,7 @@ export default function NavBar() {
         <Link to="/orders/attack">Приказ похода</Link>
         <Link to="/orders/defense">Приказ обороны</Link>
         <Link to="/orders/raid">Приказ набега</Link>
+        <Link to="/battle">Бой</Link>
+        <Link to="/recruitment">Найм Войск</Link>
     </Wrapper>
 }

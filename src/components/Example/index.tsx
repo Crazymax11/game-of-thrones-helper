@@ -3,16 +3,18 @@ import proptypes, {InferProps} from 'prop-types';
 import styled from 'styled-components';
 
 
-type ExampleType = "good" | "bad" ;
+type ExampleType = "good" | "bad" | "ugly";
 
 const colorMapping = {
     background: {
         good: '#ccffc7',
-        bad: '#eb6c6e'
+        bad: '#eb6c6e',
+        ugly: '#8fceeb'
     },
     border: {
         good: '#86ff7a',
-        bad: '#eb2a2d'
+        bad: '#eb2a2d',
+        ugly: '#00b4f5'
     }
 }
 
@@ -26,6 +28,11 @@ const ExampleBlock = styled.div<{ type: ExampleType }>`
 
   h3 {
     font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  img {
+      margin-bottom: 20px;
   }
 
   .text {

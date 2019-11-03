@@ -32,7 +32,7 @@ export default function OrderDescription(
   props: InferProps<typeof OrderDescription.propTypes>
 ) {
   const ExamplesList = styled.div`
-    * {
+    & > * {
       margin-bottom: 10px;
     }
   `;
