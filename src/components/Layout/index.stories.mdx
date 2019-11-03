@@ -1,0 +1,37 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import Layout from './index.tsx';
+import Header from './Header.tsx';
+import NavBar from './NavBar.tsx';
+import { BrowserRouter as Router } from "react-router-dom";
+
+<Meta title="MDX|Layout" component={Layout} />
+
+# Layout
+
+Layout
+
+## Layout
+
+<Preview>
+    <Story name="basic">
+            <Layout> Hello World </Layout>
+    </Story>
+</Preview>
+
+## Header
+
+<Preview>
+    <Story name="Header">
+        <Header onOpenMenu={console.log}>   </Header>
+    </Story>
+</Preview>
+
+## NavBar
+
+<Preview>
+    <Story name="NavBar">
+        <Router>
+            <NavBar>   </NavBar>
+        </Router>
+    </Story>
+</Preview>
