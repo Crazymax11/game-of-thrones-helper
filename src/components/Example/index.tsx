@@ -21,8 +21,15 @@ const ExampleBlock = styled.div<{ type: ExampleType }>`
   border-style: solid;
   border-width: 2px;
   border-color: ${props => colorMapping.border[props.type]};
+  box-shadow: 3px 3px 3px 3px gray;
+  padding: 6px;
+
   h3 {
     font-size: 30px;
+  }
+
+  .text {
+    text-align: justify;
   }
 `;
 
@@ -36,7 +43,7 @@ export default function Example({
     <ExampleBlock type={type}>
       <h3> {title} </h3>
       <img alt="картинка примера" src={image}></img>
-      <div>{text}</div>
+      <div className="text">{text}</div>
     </ExampleBlock>
   );
 }
