@@ -25,6 +25,22 @@ const DescriptionText = styled.div`
 `;
 
 
+function ShortFacts({facts}: InferProps<typeof ShortFacts.propTypes>) {
+    const FactItem = styled.li`
+        list-style: circle;
+        margin-bottom: 5px;
+    `
+    
+    return <ul>
+        {facts.map(fact => <FactItem> {fact} </FactItem>)}
+    </ul>
+}
+
+ShortFacts.propTypes = {
+    facts: proptypes.arrayOf(proptypes.node.isRequired).isRequired
+}
+
+
 /**
  * Test descprtion
  */
@@ -67,6 +83,7 @@ export default function OrderDescription(
       <DescriptionBlock>
         <Logo image={props.orderMarkImage}></Logo>
         <DescriptionText>{props.orderDescriptionText}</DescriptionText>
+        <ShortFacts facts={props.facts}/>
       </DescriptionBlock>
 
       {Examples}
@@ -77,6 +94,7 @@ export default function OrderDescription(
 OrderDescription.propTypes = {
   orderMarkImage: proptypes.string.isRequired,
   orderDescriptionText: proptypes.string.isRequired,
+  facts: ShortFacts.propTypes.facts,
   examples: proptypes.arrayOf(
     proptypes.shape({
       title: Example.propTypes.title,

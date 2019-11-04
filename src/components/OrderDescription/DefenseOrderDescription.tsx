@@ -3,9 +3,13 @@ import React from "react";
 
 import markImage from './defenseOrder.png';
 
-const description = `
-Приказ обороны дает армии бонус к боевой силе в случае обороны. Приказ обороны даёт бонус против любого количества атак в течение раунда. Цифра на приказе означает бонус к боевой силе.
-`;
+const description = `Приказ обороны`;
+
+const shortFacts = [
+  'Приказ обороны дает армии бонус к боевой силе в случае обороны.',
+  'Приказ обороны даёт бонус против любого количества атак в течение раунда.',
+  'Цифра на приказе означает бонус к боевой силе.'
+]
 
 const examples:  Array<{title: string, image: string, text: string, type: 'bad'| 'good'}> = [
   {
@@ -17,5 +21,5 @@ const examples:  Array<{title: string, image: string, text: string, type: 'bad'|
 ]
 
 export default function DefenseOrderDescription() {
-  return <OrderDescription orderDescriptionText={description} examples={examples} orderMarkImage={markImage}/>;
+  return <OrderDescription facts={shortFacts} orderDescriptionText={description} examples={examples} orderMarkImage={markImage}/>;
 }
