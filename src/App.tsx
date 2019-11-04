@@ -7,6 +7,7 @@ import DefenseOrderDescription from './components/OrderDescription/DefenseOrderD
 import RaidOrderDescription from './components/OrderDescription/RaidOrderDescription'
 import Battle from './components/Battle/index'
 import Recruitment from './components/Recruitment/index'
+import Glossary from './components/Glossary/index'
 
 import './App.css';
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           <Route path="/orders/raid">  <RaidOrderDescription/> </Route>
           <Route path="/battle"> <Battle/> </Route>
           <Route path="/recruitment"> <Recruitment/> </Route>
+          <Route path="/glossary"> <Glossary/> </Route>
         </Switch>
       </Layout>
     </Router>
