@@ -38,6 +38,7 @@ export default function NavBar() {
       <StyledLink to="/orders/raid">🔥 Приказ набега</StyledLink>
       <StyledLink to="/battle">⚔️ Бой</StyledLink>
       <StyledLink to="/recruitment">💂 Найм Войск</StyledLink>
+      <StyledLink to="/round-order">🗺️ Порядок хода</StyledLink>
       <StyledLink to="/glossary"> 📚 Глоссарий</StyledLink>
     </Wrapper>
   );

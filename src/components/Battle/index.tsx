@@ -42,17 +42,22 @@ const steps = [
       "Бой завершён. Снимите с поля приказ похода Дома, который атаковал противника. Если бой выиграл атакующий, он снимает с оспариваемой области жетон приказа и жетоны власти проигравшего Дома (если они там есть)."
   }
 ];
-const Step = (props: {title: string, text: string}) => {
-  const ListItem = styled.li`
-    list-style: circle;
+const ListItem = styled.li`
+    list-style-type: circle;
     margin-bottom: 15px;
   `;
+
+const StepName = styled.span`
+  cursor: pointer;
+`
+const Step = (props: {title: string, text: string}) => {
+  
 
   const [isExpanded, toggle] = useState(false);
 
   return (
     <ListItem>
-      <span onClick={() => toggle(!isExpanded)}>{props.title}</span>
+      <StepName onClick={() => toggle(!isExpanded)}>{props.title}</StepName>
       {isExpanded && <div>{props.text}</div>}{" "}
     </ListItem>
   );
@@ -64,7 +69,7 @@ export default function Battle() {
   return (
     <Wrapper>
       <h3> Battle! </h3>
-      <div> </div>
+      <div> Нажми на пункт, чтобы раскрыть его </div>
       <div className="steps">
         {steps.map(Step)}
       </div>
