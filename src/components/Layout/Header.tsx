@@ -1,30 +1,12 @@
 import React from "react";
 import proptypes, { InferProps } from "prop-types";
+import {Icon} from 'semantic-ui-react';
 import styled from "styled-components";
 
-function MenuIcon(props: {onClick: Function}) {
-  return (
-    <svg
-      version="1.1"
-      id="Capa_1"
-      x="0px"
-      y="0px"
-      width="30px"
-      height="30px"
-      viewBox="0 0 124 124"
-      onClick={() => props.onClick()}
-    >
-      <g>
-        <path d="M112,6H12C5.4,6,0,11.4,0,18s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,6,112,6z" />
-        <path d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z" />
-        <path d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z" />
-      </g>
-    </svg>
-  );
-}
 
 const Panel = styled.div`
   box-shadow: 0px 0px 3px 0px gray;
+  padding-left: 10px;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -44,7 +26,7 @@ export default function Header({
 }: InferProps<typeof Header.propTypes>) {
   return (
     <Panel>
-      <MenuIcon onClick={() => onOpenMenu()} />
+      <Icon name="bars" size="large" onClick={() => onOpenMenu()} />
       <HeaderText> Game of Thrones </HeaderText>
     </Panel>
   );
