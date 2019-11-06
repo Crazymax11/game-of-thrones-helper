@@ -40,6 +40,7 @@ export default function NavBar() {
       <StyledLink to="/recruitment">💂 Найм Войск</StyledLink>
       <StyledLink to="/round-order">🗺️ Порядок хода</StyledLink>
       <StyledLink to="/glossary"> 📚 Глоссарий</StyledLink>
+      <StyledLink to="/wildlings"> 👺 Одичалые</StyledLink>
     </Wrapper>
   );
 }

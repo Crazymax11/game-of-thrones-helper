@@ -9,6 +9,7 @@ import Battle from './components/Battle/index'
 import Recruitment from './components/Recruitment/index'
 import Glossary from './components/Glossary/index'
 import RoundOrder from './components/RoundOrder/index'
+import Wildlings from './components/Wildlings/index'
 
 import './App.css';
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <Route path="/recruitment"> <Recruitment/> </Route>
           <Route path="/glossary"> <Glossary/> </Route>
           <Route path="/round-order"> <RoundOrder/> </Route>
+          <Route path="/wildlings"> <Wildlings/> </Route>
         </Switch>
       </Layout>
     </Router>
