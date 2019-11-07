@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { List, Header, Container, Icon } from 'semantic-ui-react'
+import { List, Header, Container, Icon,Divider } from 'semantic-ui-react'
 
 export default () => {
   const [isWin, toggleWin] = useState(false);
@@ -15,6 +15,7 @@ export default () => {
         Ночного дозора. Однако без помощи Великих домов отразить нашествие не
         получится.
       </div>
+      <Divider/>
       <div>
         Нашествие одичалых может произойти в фазе Вестероса, если случится одно
         из двух событий:
@@ -27,7 +28,8 @@ export default () => {
           будет вытянута и разыграна карта «Нашествие одичалых».
         </List.Item>
       </List>
-      <h3>Как проходит нашествие одичалых</h3>
+      <Divider/>
+      <Header as="h3">Как проходит нашествие одичалых</Header>
       <List bulleted>
         <List.Item> Игроки устраивают голосование.</List.Item>
         <List.Item>
