@@ -24,8 +24,7 @@ const LayoutWrapper = styled.div`
   position: relative;
 `;
 const ContentWrapper = styled.div`
-  margin-left: 30px;
-  margin-right: 30px;
+
 `;
 export default function Layout({
   children
