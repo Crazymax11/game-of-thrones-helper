@@ -1,8 +1,8 @@
 import React from "react";
 import proptypes, { InferProps } from "prop-types";
-import {Icon} from 'semantic-ui-react';
+import {Icon, Image} from 'semantic-ui-react';
 import styled from "styled-components";
-
+import LogoImage from './game-of-thrones-logo.png'
 
 const Panel = styled.div`
   box-shadow: 0px 0px 3px 0px gray;
@@ -27,7 +27,7 @@ export default function Header({
   return (
     <Panel>
       <Icon name="bars" size="large" onClick={() => onOpenMenu()} />
-      <HeaderText> Game of Thrones </HeaderText>
+      <HeaderText> <Image src={LogoImage} size="small"/> </HeaderText>
     </Panel>
   );
 }
