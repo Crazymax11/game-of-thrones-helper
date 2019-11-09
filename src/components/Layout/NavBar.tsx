@@ -1,16 +1,8 @@
-import React, { useState, ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-import {
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-  Container,
-  Label
-} from "semantic-ui-react";
+import { Menu, Sidebar, Container } from "semantic-ui-react";
 
 export default function NavBar({
   visible,
@@ -19,7 +11,6 @@ export default function NavBar({
   visible: boolean;
   onHide: Function;
 }) {
-  const [isOrdersExpanded, toggleIsOrdersExpanded] = useState(false);
   return (
     <Sidebar
       as={Menu}
@@ -30,28 +21,26 @@ export default function NavBar({
       visible={visible}
     >
       <Container textAlign="left">
-        <MenuItem onClick={() => toggleIsOrdersExpanded(!isOrdersExpanded)}>
+        <Menu.Item>
           Приказы
-          {isOrdersExpanded && (
-            <Menu.Menu>
-              <MenuItem>
-                <Link to="/orders/support"> ✊ Приказ поддержки </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/orders/might"> 👑 Приказ услиения власти </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/orders/attack"> 🗡️ Приказ похода </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/orders/defense"> 🛡️ Приказ обороны </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/orders/raid"> 🔥 Приказ набега </Link>
-              </MenuItem>
-            </Menu.Menu>
-          )}
-        </MenuItem>
+          <Menu.Menu>
+            <MenuItem>
+              <Link to="/orders/support"> ✊ Приказ поддержки </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/orders/might"> 👑 Приказ услиения власти </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/orders/attack"> 🗡️ Приказ похода </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/orders/defense"> 🛡️ Приказ обороны </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/orders/raid"> 🔥 Приказ набега </Link>
+            </MenuItem>
+          </Menu.Menu>
+        </Menu.Item>
 
         <MenuItem>
           <Link to="/battle"> ⚔️ Бой </Link>
@@ -73,14 +62,8 @@ export default function NavBar({
   );
 }
 
-const MenuItem = ({
-  children,
-  onClick = () => {}
-}: {
-  children: any;
-  onClick?: Function;
-}) => (
-  <Menu.Item onClick={() => onClick()}>
+const MenuItem = ({ children }: { children: any; onClick?: Function }) => (
+  <Menu.Item>
     <Flex>{children}</Flex>
   </Menu.Item>
 );
