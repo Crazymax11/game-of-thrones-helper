@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Container, List, Header } from "semantic-ui-react";
 import proptypes, { InferProps } from "prop-types";
 
 const Logo = styled.div<{ image: string }>`
@@ -13,27 +14,19 @@ const Logo = styled.div<{ image: string }>`
   background-size: 200px;
 `;
 
-
-const DescriptionText = styled.div`
-  margin-bottom: 10px;
-`;
-
-
-function ShortFacts({facts}: InferProps<typeof ShortFacts.propTypes>) {
-    const FactItem = styled.li`
-        list-style: circle;
-        margin-bottom: 15px;
-    `
-    
-    return <ul>
-        {facts.map(fact => <FactItem> {fact} </FactItem>)}
-    </ul>
+function ShortFacts({ facts }: InferProps<typeof ShortFacts.propTypes>) {
+  return (
+    <List bulleted>
+      {facts.map(fact => (
+        <List.Item>{fact}</List.Item>
+      ))}
+    </List>
+  );
 }
 
 ShortFacts.propTypes = {
-    facts: proptypes.arrayOf(proptypes.node.isRequired).isRequired
-}
-
+  facts: proptypes.arrayOf(proptypes.node.isRequired).isRequired
+};
 
 /**
  * Test descprtion
@@ -41,31 +34,27 @@ ShortFacts.propTypes = {
 export default function OrderDescription(
   props: InferProps<typeof OrderDescription.propTypes>
 ) {
- 
-
   const Wrapper = styled.div`
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-    font-size: 25px;
-
-    h2 {
-      font-size: 35px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `;
 
- 
   return (
-    <Wrapper>
+    <Container text>
+      <Wrapper>
+        <Header as="h1"> {props.title} </Header>
         <Logo image={props.orderMarkImage}></Logo>
-        <DescriptionText>{props.orderDescriptionText}</DescriptionText>
-        <ShortFacts facts={props.facts}/>
-    </Wrapper>
+        <p>{props.orderDescriptionText}</p>
+        <ShortFacts facts={props.facts} />
+      </Wrapper>
+    </Container>
   );
 }
 
 OrderDescription.propTypes = {
+  title: proptypes.string.isRequired,
   orderMarkImage: proptypes.string.isRequired,
   orderDescriptionText: proptypes.string.isRequired,
-  facts: ShortFacts.propTypes.facts,
+  facts: ShortFacts.propTypes.facts
 };

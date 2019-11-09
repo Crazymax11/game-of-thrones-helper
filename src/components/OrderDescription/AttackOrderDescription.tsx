@@ -1,7 +1,7 @@
 import OrderDescription from "./index";
 import React from "react";
 
-import markImage from './attackOrder.png';
+import markImage from "./attackOrder.png";
 
 const description = `Приказ похода позволяет армии передвигаться по Вестеросу, атаковать соперников и захватывать земли. Поход - главное действие в игре, поэтому используйте этот приказ с умом.`;
 
@@ -15,10 +15,15 @@ const shortFacts = [
   "Флот ⛵ может перейти в смежный с морем порт",
   "Флот ⛵ из порта может перейти только в смежное море",
   "Игрок имеет право не использовать возможности приказа, просто перевернув жетон приказа"
-
-]
-
+];
 
 export default function AttackOrderDescription() {
-  return <OrderDescription facts={shortFacts} orderDescriptionText={description} orderMarkImage={markImage}/>;
+  return (
+    <OrderDescription
+      title="Приказ похода"
+      facts={shortFacts}
+      orderDescriptionText={description}
+      orderMarkImage={markImage}
+    />
+  );
 }

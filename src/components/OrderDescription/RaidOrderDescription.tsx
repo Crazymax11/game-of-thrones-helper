@@ -18,6 +18,7 @@ const shortFacts = [
 export default function RaidOrderDescription() {
   return (
     <OrderDescription
+      title="Приказ набега"
       facts={shortFacts}
       orderDescriptionText={description}
       orderMarkImage={markImage}
