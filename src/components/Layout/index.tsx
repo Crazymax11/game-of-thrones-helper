@@ -21,28 +21,27 @@ const Overlay = styled.div`
 `;
 
 const LayoutWrapper = styled.div`
-  position: relative;
+  min-height: 100vh;
 `;
-const ContentWrapper = styled.div`
 
-`;
+const ContentWrapper = styled.div``;
 export default function Layout({
   children
 }: InferProps<typeof Layout.propTypes>) {
   const [isNavBarVisible, toggleNavBar] = useState(false);
   return (
-    <Sidebar.Pushable as={Segment}>
-      <NavBar visible={isNavBarVisible} onHide={() => toggleNavBar(false)} />
+      <Sidebar.Pushable as={Segment}>
+        <NavBar visible={isNavBarVisible} onHide={() => toggleNavBar(false)} />
 
-      <Sidebar.Pusher dimmed={isNavBarVisible}>
-        <Segment basic>
-          <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
-          <div>
-            <ContentWrapper>{children}</ContentWrapper>
-          </div>
-        </Segment>
-      </Sidebar.Pusher>
-    </Sidebar.Pushable>
+        <Sidebar.Pusher dimmed={isNavBarVisible}>
+          <Segment basic>
+            <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
+            <div>
+              <ContentWrapper>{children}</ContentWrapper>
+            </div>
+          </Segment>
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
   );
 }
 

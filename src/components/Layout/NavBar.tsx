@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, ReactElement } from "react";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
@@ -12,33 +12,6 @@ import {
   Label
 } from "semantic-ui-react";
 
-const Wrapper = styled.div`
-  padding-top: 20px;
-  box-shadow: 3px 0px 0px 0px gray;
-  height: 100%;
-  max-width: 240px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: start;
-  padding-right: 10px;
-  background-color: white;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  color: blue !important;
-
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
-`;
-
 export default function NavBar({
   visible,
   onHide
@@ -46,6 +19,7 @@ export default function NavBar({
   visible: boolean;
   onHide: Function;
 }) {
+  const [isOrdersExpanded, toggleIsOrdersExpanded] = useState(false);
   return (
     <Sidebar
       as={Menu}
@@ -56,43 +30,64 @@ export default function NavBar({
       visible={visible}
     >
       <Container textAlign="left">
-        <Menu.Item>
+        <MenuItem onClick={() => toggleIsOrdersExpanded(!isOrdersExpanded)}>
           Приказы
-          <Menu.Menu>
-            <Menu.Item>
-              <Link to="/orders/support"> ✊ Приказ поддержки </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/orders/might"> 👑 Приказ услиения власти </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/orders/attack"> 🗡️ Приказ похода </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/orders/defense"> 🛡️ Приказ обороны </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/orders/raid"> 🔥 Приказ набега </Link>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu.Item>
+          {isOrdersExpanded && (
+            <Menu.Menu>
+              <MenuItem>
+                <Link to="/orders/support"> ✊ Приказ поддержки </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/orders/might"> 👑 Приказ услиения власти </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/orders/attack"> 🗡️ Приказ похода </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/orders/defense"> 🛡️ Приказ обороны </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/orders/raid"> 🔥 Приказ набега </Link>
+              </MenuItem>
+            </Menu.Menu>
+          )}
+        </MenuItem>
 
-        <Menu.Item>
+        <MenuItem>
           <Link to="/battle"> ⚔️ Бой </Link>
-        </Menu.Item>
-        <Menu.Item>
+        </MenuItem>
+        <MenuItem>
           <Link to="/recruitment"> 💂 Найм Войск </Link>
-        </Menu.Item>
-        <Menu.Item>
+        </MenuItem>
+        <MenuItem>
           <Link to="/round-order"> 🗺️ Порядок хода </Link>
-        </Menu.Item>
-        <Menu.Item>
+        </MenuItem>
+        <MenuItem>
           <Link to="/glossary"> 📚 Глоссарий </Link>
-        </Menu.Item>
-        <Menu.Item>
+        </MenuItem>
+        <MenuItem>
           <Link to="/wildlings"> 👺 Одичалые </Link>
-        </Menu.Item>
+        </MenuItem>
       </Container>
     </Sidebar>
   );
 }
+
+const MenuItem = ({
+  children,
+  onClick = () => {}
+}: {
+  children: any;
+  onClick?: Function;
+}) => (
+  <Menu.Item onClick={() => onClick()}>
+    <Flex>{children}</Flex>
+  </Menu.Item>
+);
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+`;
