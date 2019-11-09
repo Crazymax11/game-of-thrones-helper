@@ -30,18 +30,17 @@ export default function Layout({
 }: InferProps<typeof Layout.propTypes>) {
   const [isNavBarVisible, toggleNavBar] = useState(false);
   return (
-      <Sidebar.Pushable as={Segment}>
-        <NavBar visible={isNavBarVisible} onHide={() => toggleNavBar(false)} />
-
-        <Sidebar.Pusher dimmed={isNavBarVisible}>
-          <Segment basic>
-            <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
-            <div>
-              <ContentWrapper>{children}</ContentWrapper>
-            </div>
-          </Segment>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
+    <Sidebar.Pushable as={Segment}>
+      <NavBar visible={isNavBarVisible} onHide={() => toggleNavBar(false)} />
+      <Sidebar.Pusher dimmed={isNavBarVisible}>
+        <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
+        <Segment basic>
+          <div>
+            <ContentWrapper>{children}</ContentWrapper>
+          </div>
+        </Segment>
+      </Sidebar.Pusher>
+    </Sidebar.Pushable>
   );
 }
 
