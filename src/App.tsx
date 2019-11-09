@@ -24,9 +24,9 @@ import {
 const App: React.FC = () => {
   return (
     <Router>
-      <Layout>
+      <Layout >
         <Switch>
-          <Route exact path="/"> Hello World </Route>
+          <Route exact path="/"> <p>Иди в навигацию!</p> </Route>
           <Route path="/orders/support">  <SupportOrderDescription/> </Route>
           <Route path="/orders/might">  <MightOrderDescription/> </Route>
           <Route path="/orders/attack">  <AttackOrderDescription/> </Route>

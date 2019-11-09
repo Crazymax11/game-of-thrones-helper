@@ -3,28 +3,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import NavBar from "./NavBar";
-import { Icon, Image, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Segment, Sidebar } from "semantic-ui-react";
 
-const NavBarWrapper = styled.div`
-  height: 100%;
-  min-height: 100vh;
-  position: absolute;
-`;
 
-const Overlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  background-color: gray;
-  opacity: 0.5;
-`;
-
-const LayoutWrapper = styled.div`
-  min-height: 100vh;
-`;
 
 const ContentWrapper = styled.div``;
+
 export default function Layout({
   children
 }: InferProps<typeof Layout.propTypes>) {
@@ -32,7 +16,7 @@ export default function Layout({
   return (
     <Sidebar.Pushable as={Segment}>
       <NavBar visible={isNavBarVisible} onHide={() => toggleNavBar(false)} />
-      <Sidebar.Pusher dimmed={isNavBarVisible}>
+      <Sidebar.Pusher dimmed={isNavBarVisible} style={{minHeight: '100vh'}}>
         <Header onOpenMenu={() => toggleNavBar(!isNavBarVisible)} />
         <Segment basic>
           <div>
