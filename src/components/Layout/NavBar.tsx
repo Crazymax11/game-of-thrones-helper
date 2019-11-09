@@ -52,6 +52,9 @@ export default function NavBar({
           <Link to="/round-order"> 🗺️ Порядок хода </Link>
         </MenuItem>
         <MenuItem>
+          <Link to="/tracks"> 🛣 Трэки </Link>
+        </MenuItem>
+        <MenuItem>
           <Link to="/glossary"> 📚 Глоссарий </Link>
         </MenuItem>
         <MenuItem>
