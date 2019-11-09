@@ -1,7 +1,6 @@
 import React from "react";
 import { List, Container, Header, Divider } from "semantic-ui-react";
 
-
 export default function Battle() {
   return (
     <Container text>
@@ -88,7 +87,7 @@ export default function Battle() {
       <Divider />
       <Header as="h2"> Применение эффектов </Header>
       <p>
-        Применяем эффекты карт дома, а также знаки знак меча️ 🗡️, крепости 🏰 и
+        Применяем эффекты карт дома, а также знаки меча️ 🗡️, крепости 🏰 и
         смерти 💀.
         <List bulleted>
           <List.Item>
