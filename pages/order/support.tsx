@@ -1,7 +1,7 @@
 import OrderDescription from "../../components/orderComponent";
 import Layout from "../../components/Layout/index";
 import React from "react";
-
+import Head from 'next/head'
 const description = `Армия, получившая приказ поддержки, может участвовать в боях в соседних территориях`;
 
 const shortFacts = [
@@ -18,6 +18,7 @@ const shortFacts = [
 export default function SupportOrderDescription() {
   return (
     <Layout>
+      <Head><title>Приказ поддержки</title></Head>
       <OrderDescription
         title="Приказ поддержки"
         facts={shortFacts}

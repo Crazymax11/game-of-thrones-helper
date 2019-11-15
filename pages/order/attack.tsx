@@ -1,7 +1,7 @@
 import OrderDescription from "../../components/orderComponent";
 import Layout from "../../components/Layout/index";
 import React from "react";
-
+import Head from 'next/head'
 const description = `Приказ похода позволяет армии передвигаться по Вестеросу, атаковать соперников и захватывать земли. Поход - главное действие в игре, поэтому используйте этот приказ с умом.`;
 
 const shortFacts = [
@@ -19,6 +19,7 @@ const shortFacts = [
 export default function AttackOrderDescription() {
   return (
     <Layout>
+      <Head><title>Приказ похода</title></Head>
       <OrderDescription
         title="Приказ похода"
         facts={shortFacts}

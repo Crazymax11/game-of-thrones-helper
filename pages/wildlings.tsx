@@ -1,12 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout/index";
 import { List, Header, Container, Divider } from "semantic-ui-react";
-
+import Head from 'next/head'
 export default () => {
   return (
     <Layout>
+      <Head>
+        <title>Нашествие одичалых</title>
+      </Head>
       <Container text>
-        <Header as="h1"> Одичалые </Header>
+        <Header as="h1"> Нашествие одичалых </Header>
         <div>
           На оледенелом севере варварские племена одичалых готовятся к
           очередному походу на Вестерос. От вторжения диких орд (и других, более

@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import Layout from "../components/Layout/index";
 import { Header, Divider, Container, List, Image } from "semantic-ui-react";
-
+import Head from 'next/head'
 const Track = (props: {
   title: string;
   description: ReactElement;
@@ -11,6 +11,10 @@ const Track = (props: {
 }) => {
   return (
     <Layout>
+      <>
+      <Head>
+        <title>Треки влияния</title>
+      </Head>
       <div>
         <Divider />
         <Header as="h2"> {props.title} </Header>
@@ -19,6 +23,7 @@ const Track = (props: {
         <Image src={props.artifactImage} centered></Image>
         <p>{props.artifactDescription}</p>
       </div>
+      </>
     </Layout>
   );
 };

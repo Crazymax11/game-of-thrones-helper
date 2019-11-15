@@ -1,7 +1,7 @@
 import OrderDescription from "../../components/orderComponent";
 import Layout from "../../components/Layout/index";
 import React from "react";
-
+import Head from 'next/head'
 const description = `Приказ набега позволяет армии заняться грабежом, диверсией, саботажем и прочими приятными штуками.`;
 
 const shortFacts = [
@@ -17,6 +17,7 @@ const shortFacts = [
 export default function RaidOrderDescription() {
   return (
     <Layout>
+      <Head><title>Приказ набега</title></Head>
       <OrderDescription
         title="Приказ набега"
         facts={shortFacts}

@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/index";
 import { Header, Container, Divider } from "semantic-ui-react";
+import Head from 'next/head'
 
 const steps = [
   {
@@ -44,6 +45,9 @@ const steps = [
 export default () => {
   return (
     <Layout>
+      <Head>
+        <title>Порядок хода</title>
+      </Head>
       <Container text>
         <Header as="h1"> Порядок хода! </Header>
         {steps.map(({ title, text }) => {

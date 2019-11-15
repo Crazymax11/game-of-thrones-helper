@@ -1,7 +1,7 @@
 import OrderDescription from "../../components/orderComponent";
 import Layout from "../../components/Layout/index";
 import React from "react";
-
+import Head from 'next/head'
 const description = `Приказ усиления власти позволяет получать жетоны власти и нанимать войска.`;
 
 const shortFacts = [
@@ -15,6 +15,7 @@ const shortFacts = [
 export default function MightOrderDescription() {
   return (
     <Layout>
+      <Head><title>Приказ усиления власти</title></Head>
       <OrderDescription
         title="Приказ усиления власти"
         facts={shortFacts}

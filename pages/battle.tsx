@@ -1,10 +1,13 @@
 import React from "react";
 import Layout from "../components/Layout/index";
 import { List, Container, Header, Divider } from "semantic-ui-react";
-
+import Head from 'next/head'
 export default function Battle() {
   return (
     <Layout>
+      <Head>
+        <title>Порядок боя</title>
+      </Head>
       <Container text>
         <Header as="h1"> Battle! </Header>
         <p>

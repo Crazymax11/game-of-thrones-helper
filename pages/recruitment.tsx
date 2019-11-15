@@ -1,10 +1,11 @@
 import React from "react";
 import Layout from "../components/Layout/index";
 import { List, Header, Container } from "semantic-ui-react";
-
+import Head from 'next/head'
 export default function Recruitment() {
   return (
     <Layout>
+      <Head> Найм войск </Head>
       <Container text>
         <Header as="h1">Найм войск</Header>
         <p>
