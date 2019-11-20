@@ -62,6 +62,9 @@ export default function NavBar({
         <MenuItem>
           <Link href="/wildlings"> 👺 Одичалые </Link>
         </MenuItem>
+        <MenuItem>
+          <Link href="/interactive-map"> 🗺️ Интерактивная карта </Link>
+        </MenuItem>
       </Container>
     </Sidebar>
   );

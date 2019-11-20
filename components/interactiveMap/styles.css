@@ -1,0 +1,27 @@
+.region {
+    opacity: 0.7;
+    color: transparent;
+}
+
+.region._stark {
+    color: white;
+}
+
+.region._lanister {
+    color: red;
+}
+
+.region._baratheon {
+    color: yellow;
+}
+.region._martell {
+    color: orange;
+}
+
+.region._tyrell {
+    color: green;
+}
+
+.region._grayjoy {
+    color: black;
+}
