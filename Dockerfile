@@ -1,6 +1,10 @@
 FROM node:12 as builder
 
-COPY . .
+COPY components /components
+COPY pages /pages
+COPY public /public
+COPY next.config.js tsconfig.json yarn.lock package.json /
+
 RUN yarn
 RUN yarn build
 RUN yarn next export
