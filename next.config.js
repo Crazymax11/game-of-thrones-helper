@@ -8,6 +8,6 @@ module.exports = withPlugins([
   [optimizedImages, {
       optimizeImages: false
   }],
-  [withOffline()],
-  withCSS()
+  [withOffline],
+  [withCSS]
 ]);
