@@ -3,7 +3,6 @@ import * as regions from "./regions";
 import withOwner from './region'
 
 const maped = Object.values(regions).map(withOwner);
-
 import './styles.css';
 
 export default () => {

@@ -1,14 +1,18 @@
 import React from "react";
-import { RegionProps } from "../types";
-export default (props: RegionProps) => (
-  <path
-    onClick={props.onClick}
-    className={`region _${props.owner}`}
-    id="Blackwater"
-    fill="currentColor"
-    stroke="black"
-    stroke-width="1"
-    d="M 515.00,1357.76
+
+import { RegionProps, ArmyUnit } from "../types";
+import Army from '../army';
+
+export default (props: RegionProps) => {
+  return <g className={`region _${props.owner}`}>
+    <path
+      className="region__form"
+      onClick={props.onClick}
+      id="Blackwater"
+      fill="currentColor"
+      stroke="black"
+      strokeWidth="1"
+      d="M 515.00,1357.76
            C 520.98,1356.18 526.44,1358.19 531.96,1354.30
              537.55,1350.36 536.49,1345.81 539.65,1342.50
              542.11,1339.91 549.46,1337.75 553.00,1336.90
@@ -52,5 +56,7 @@ export default (props: RegionProps) => (
              474.46,1403.82 482.00,1389.08 490.09,1377.00
              490.09,1377.00 499.00,1365.00 499.00,1365.00
              503.84,1363.97 508.80,1359.40 515.00,1357.76 Z"
-  />
-);
+    />
+    <Army startX="515" startY="1357"  />
+  </g>}
+

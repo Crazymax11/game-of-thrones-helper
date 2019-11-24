@@ -1,6 +1,10 @@
 .region {
-    opacity: 0.7;
+
     color: transparent;
+}
+
+.region__form {
+    opacity: 0.7;
 }
 
 .region._stark {
@@ -23,5 +27,5 @@
 }
 
 .region._grayjoy {
-    color: black;
+    color: grey;
 }
