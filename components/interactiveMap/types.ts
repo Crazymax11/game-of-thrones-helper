@@ -4,8 +4,10 @@ export type ArmyUnit =
   'tower'|
   'ship'
 
+  export type Owner =  "stark" | "lanister" | "tyrell" | "martel" | "baratheon" | "greyjoy" | 'none';
+
 export interface RegionProps {
-  owner: "stark" | "lanister" | "tyrell" | "martel" | "baratheon" | "greyjoy";
+  owner: Owner;
   army: ArmyUnit[]
   onClick(): any
 }
