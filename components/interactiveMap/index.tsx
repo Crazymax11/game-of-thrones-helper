@@ -47,64 +47,29 @@ const Map = (props: Props) => {
           {currentTooltip && (
             <foreignObject
               style={{
-                width: "400px",
-                height: "400px",
+                width: "420px",
+                height: "420px",
                 // @ts-ignore
                 x: currentTooltip.x,
                 // @ts-ignore
                 y: currentTooltip.y,
-                color: "black"
+                color: "black",
               }}
             >
-              <div
-                style={{
-                  width: "400px",
-                  height: "400px",
-                  backgroundColor: "white"
-                }}
-              >
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div>Owner</div>
-                  {([
-                    "stark",
-                    "tyrell",
-                    "greyjoy",
-                    "lanister",
-                    "baratheon",
-                    "martell",
-                    "none"
-                  ] as Owner[]).map(owner => (
-                    <OwnerButton
-                      key={owner}
-                      owner={owner}
-                      onClick={() =>
-                        props.setRegionOwner(
-                          currentTooltip.currentRegion,
-                          owner
-                        )
-                      }
-                    />
-                  ))}
-                </div>
-                <div>
-                  <div>Army</div>
-                  {(["knight", "soldier", "ship", "tower"] as ArmyUnit[]).map(
-                    unit => (
-                      <UnitControls
-                        unit={unit}
-                        addUnit={() =>
-                          props.addUnit(currentTooltip.currentRegion, unit)
-                        }
-                        removeUnit={() =>
-                          props.removeUnit(currentTooltip.currentRegion, unit)
-                        }
-                      />
-                    )
-                  )}
-                </div>
-
-                <button onClick={() => setTooltip(null)}>close</button>
-              </div>
+              <Tooltip
+                id={currentTooltip.currentRegion}
+                setOwner={(owner: Owner) =>
+                  props.setRegionOwner(currentTooltip.currentRegion, owner)
+                }
+                addUnit={(unit: ArmyUnit) =>
+                  props.addUnit(currentTooltip.currentRegion, unit)
+                }
+                removeUnit={(unit: ArmyUnit) =>
+                  props.removeUnit(currentTooltip.currentRegion, unit)
+                }
+                onClose={() => setTooltip(null)}
+              />
+              />
             </foreignObject>
           )}
           }
@@ -115,7 +80,18 @@ const Map = (props: Props) => {
 };
 
 const OwnerButton = ({ owner, onClick }: { owner: Owner; onClick(): any }) => {
-  return <button onClick={onClick}> {owner}</button>;
+  return (
+    <a
+      style={{
+        display: "block",
+        height: "80px",
+        width: "80px",
+        backgroundImage: `url(/images/House_${owner}.svg)`,
+        backgroundSize: "80px"
+      }}
+      onClick={onClick}
+    />
+  );
 };
 
 const UnitControls = ({
@@ -134,10 +110,99 @@ const UnitControls = ({
   </div>
 );
 
-export default  () => {
-  return <Map
-    setRegionOwner={(id, owner) => store.regions[id].setOwner(owner)}
-    addUnit={(id, unit) => store.regions[id].addUnit(unit)}
-    removeUnit={(id, unit) => store.regions[id].removeUnit(unit)}
-  />;
+const RegionConstrols = ({
+  owner,
+  army,
+  setOwner,
+  addUnit,
+  removeUnit,
+  onClose
+}: {
+  owner: Owner;
+  army: ArmyUnit[];
+  setOwner(o: Owner): any;
+  addUnit(u: ArmyUnit): any;
+  removeUnit(u: ArmyUnit): any;
+  onClose(): any;
+}) => (
+  <div
+    style={{
+      width: "400px",
+      height: "400px",
+      backgroundColor: "white",
+      boxShadow: '10px 10px 10px black'
+    }}
+  >
+    <div
+      style={{
+        height: "200px",
+        maxHeight: '200px',
+        display: "flex",
+        flexDirection: "column"
+      }}
+    >
+      <div>Owner</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          maxHeight: '200px',
+        }}
+      >
+        {([
+          "stark",
+          "tyrell",
+          "greyjoy",
+          "lanister",
+          "baratheon",
+          "martell",
+          "none"
+        ] as Owner[]).map(owner => (
+          <OwnerButton
+            key={owner}
+            owner={owner}
+            onClick={() => setOwner(owner)}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div>Army</div>
+    {(["knight", "soldier", "ship", "tower"] as ArmyUnit[]).map(unit => (
+      <UnitControls
+        unit={unit}
+        addUnit={() => addUnit(unit)}
+        removeUnit={() => removeUnit(unit)}
+      />
+    ))}
+    <button onClick={onClose}> close </button>
+  </div>
+);
+
+const connectTooltip = (store: MapStore) => (props: {
+  id: string;
+  setOwner(o: Owner): any;
+  addUnit(u: ArmyUnit): any;
+  removeUnit(u: ArmyUnit): any;
+  onClose(): any;
+}) => (
+  <RegionConstrols
+    army={store.regions[props.id].army}
+    owner={store.regions[props.id].owner}
+    {...props}
+  />
+);
+
+const Tooltip = connectTooltip(store);
+
+export default () => {
+  return (
+    <Map
+      setRegionOwner={(id, owner) => store.regions[id].setOwner(owner)}
+      addUnit={(id, unit) => store.regions[id].addUnit(unit)}
+      removeUnit={(id, unit) => store.regions[id].removeUnit(unit)}
+    />
+  );
 };

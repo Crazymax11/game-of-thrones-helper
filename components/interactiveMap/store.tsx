@@ -17,6 +17,9 @@ export class RegionStore {
   @action
   setOwner(owner: Owner) {
     this.owner = owner;
+    if (owner === 'none') {
+        this.army = [];
+    }
   }
 
   @action
@@ -26,7 +29,7 @@ export class RegionStore {
 
   @action
   removeUnit(unit: ArmyUnit) {
-    const i = this.army.indexOf(unit);
+    const i = this.army.findIndex(u => unit === u);
     if (i) {
       this.army.splice(i, 1);
     }
