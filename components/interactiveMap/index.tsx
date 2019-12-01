@@ -176,6 +176,16 @@ const RegionConstrols = ({
   >
     <div
       style={{
+        display: "flex",
+        fontSize: "25px",
+        justifyContent: "flex-end",
+        width: "100%"
+      }}
+    >
+      <span onClick={onClose}> ❌ </span>
+    </div>
+    <div
+      style={{
         height: "200px",
         maxHeight: "200px",
         display: "flex",
@@ -229,8 +239,6 @@ const RegionConstrols = ({
         />
       ))}
     </div>
-
-    <button onClick={onClose}> close </button>
   </div>
 );
 
