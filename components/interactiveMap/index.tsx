@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import * as regions from "./regions";
 import withOwner, { connectStore } from "./region";
-
+import Unit from './units/Unit'
 import "./styles.css";
 import { Owner, ArmyUnit } from "./types";
 import { MapStore } from "./store";
@@ -119,7 +119,7 @@ const UnitControls = ({
   removeUnit(): any;
 }) => (
   <div>
-    <div> {unit}</div>
+    <Unit size={40} unit={unit}/>
     <button onClick={addUnit}> + </button>
     <button onClick={removeUnit}> - </button>
   </div>

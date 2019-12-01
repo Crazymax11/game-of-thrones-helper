@@ -43,11 +43,13 @@ export default (region: RegionDeclaration) => (props: Props) => {
 };
 
 // @ts-ignore
-export const connectStore = store => (id, Component) => observer(({ showControls }) => 
-    <Component
+export const connectStore = store => (id, Component) => observer(({ showControls }) =>  {
+    return <Component
       owner={store.regions[id].owner}
-      army={store.regions[id].army}
+      // @see https://github.com/ryansolid/mobx-jsx/issues/4
+      army={store.regions[id].army.slice()}
       //@ts-ignore
       showControls={({ x, y }) => showControls({ currentRegion: id, x, y })}
     />
+ }
 )

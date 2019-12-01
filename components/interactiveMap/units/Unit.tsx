@@ -5,8 +5,8 @@ import Catapult from "./Catapult";
 import Ship from "./Ship";
 
 export interface Props {
-  x: string | number;
-  y: string | number;
+  x?: string | number;
+  y?: string | number;
   size: number;
   unit: ArmyUnit;
 }
