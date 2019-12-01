@@ -1,17 +1,7 @@
 import React, { JSXElementConstructor } from "react";
 import { ArmyUnit } from "./types";
 
-import Catapult from "./units/catapult";
-import Knight from "./units/knight";
-import Ship from "./units/ship";
-import Soldier from "./units/soldier";
-
-const ComponentMapper: Record<ArmyUnit, JSXElementConstructor<any>> = {
-  soldier: Soldier,
-  ship: Ship,
-  tower: Catapult,
-  knight: Knight
-};
+import Unit from './units/Unit';
 
 export default (props: {
   startX: number | string;
@@ -23,12 +13,12 @@ export default (props: {
   return (
     <g>
       {units.map((unit, i) => {
-        const Component = ComponentMapper[unit];
         return (
-          <Component
+          <Unit
             x={Number(startX) + (i % 2) * 85}
             y={Number(startY) + (Math.floor(i/2)) * 85}
             size={size}
+            unit={unit}
           />
         );
       })}
