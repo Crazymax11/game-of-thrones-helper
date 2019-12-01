@@ -1,6 +1,28 @@
 .region {
-
     color: transparent;
+}
+
+._stark {
+    color: white;
+}
+
+._lanister {
+    color: red;
+}
+
+._baratheon {
+    color: yellow;
+}
+._martell {
+    color: orange;
+}
+
+._tyrell {
+    color: green;
+}
+
+._greyjoy {
+    color: grey;
 }
 
 .region__form {

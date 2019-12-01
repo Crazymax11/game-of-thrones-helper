@@ -8,6 +8,7 @@ export default (props: Props) => (
     height={props.size}
     viewBox="-44 0 488 488"
     width={props.size}
+    className={`_${props.owner}`}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

@@ -30,7 +30,7 @@ export class RegionStore {
   @action
   removeUnit(unit: ArmyUnit) {
     const i = this.army.findIndex(u => unit === u);
-    if (i) {
+    if (i !== -1) {
       this.army.splice(i, 1);
     }
   }

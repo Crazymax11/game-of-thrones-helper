@@ -8,6 +8,7 @@ export default (props: Props) => (
     height={props.size}
     viewBox="0 0 60 53"
     width={props.size}
+    className={`_${props.owner}`}
     xmlns="http://www.w3.org/2000/svg"
   >
     <g id="025---Catapult" fill="none" fill-rule="evenodd">

@@ -5,6 +5,7 @@ import Unit from './units/Unit'
 import "./styles.css";
 import { Owner, ArmyUnit } from "./types";
 import { MapStore } from "./store";
+import {observer} from 'mobx-react';
 
 const store = new MapStore(Object.keys(regions));
 const maped = Object.entries(regions).map(([id, declaration]) => {
@@ -112,14 +113,16 @@ const OwnerButton = ({ owner, onClick }: { owner: Owner; onClick(): any }) => {
 const UnitControls = ({
   unit,
   addUnit,
-  removeUnit
+  removeUnit,
+  owner
 }: {
   unit: ArmyUnit;
   addUnit(): any;
   removeUnit(): any;
+  owner: Owner;
 }) => (
   <div>
-    <Unit size={40} unit={unit}/>
+    <Unit owner={owner} size={80} unit={unit}/>
     <button onClick={addUnit}> + </button>
     <button onClick={removeUnit}> - </button>
   </div>
@@ -185,30 +188,34 @@ const RegionConstrols = ({
     </div>
 
     <div>Army</div>
+    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: '200px'}}>
     {(["knight", "soldier", "ship", "tower"] as ArmyUnit[]).map(unit => (
       <UnitControls
         unit={unit}
         addUnit={() => addUnit(unit)}
         removeUnit={() => removeUnit(unit)}
+        owner={owner}
       />
     ))}
+    </div>
+    
     <button onClick={onClose}> close </button>
   </div>
 );
 
-const connectTooltip = (store: MapStore) => (props: {
+const connectTooltip = (store: MapStore) => observer((props: {
   id: string;
   setOwner(o: Owner): any;
   addUnit(u: ArmyUnit): any;
   removeUnit(u: ArmyUnit): any;
   onClose(): any;
 }) => (
-  <RegionConstrols
+  (<RegionConstrols
     army={store.regions[props.id].army}
     owner={store.regions[props.id].owner}
     {...props}
-  />
-);
+  />)
+))
 
 const Tooltip = connectTooltip(store);
 

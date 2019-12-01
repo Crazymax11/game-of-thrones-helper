@@ -37,6 +37,7 @@ export default (region: RegionDeclaration) => (props: Props) => {
         startX={region.armyStartX}
         startY={region.armyStartY}
         units={props.army}
+        owner={props.owner}
       />
     </g>
   );

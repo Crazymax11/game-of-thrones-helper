@@ -1,4 +1,4 @@
-import { ArmyUnit } from "../types";
+import { ArmyUnit, Owner } from "../types";
 import Knight from "./Knight";
 import Soldier from "./Soldier";
 import Catapult from "./Catapult";
@@ -9,6 +9,7 @@ export interface Props {
   y?: string | number;
   size: number;
   unit: ArmyUnit;
+  owner: Owner;
 }
 
 export default function t(props: Props) {
