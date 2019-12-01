@@ -17,8 +17,9 @@ export default (props: {
   startX: number | string;
   startY: number | string;
   units?: ArmyUnit[];
+  size?: number
 }) => {
-  const { startX, startY, units = [] } = props;
+  const { startX, startY, units = [], size = 80 } = props;
   return (
     <g>
       {units.map((unit, i) => {
@@ -27,6 +28,7 @@ export default (props: {
           <Component
             x={Number(startX) + (i % 2) * 85}
             y={Number(startY) + (Math.floor(i/2)) * 85}
+            size={size}
           />
         );
       })}

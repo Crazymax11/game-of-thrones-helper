@@ -5,9 +5,9 @@ export default (props: Props) => (
   <svg
     x={props.x}
     y={props.y}
-    height="80"
+    height={props.size}
     viewBox="0 -35 512.00087 512"
-    width="80"
+    width={props.size}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path d="m341.039062 318.390625-8.121093 41.640625 16.257812 77.191406c.609375 2.890625 3.160157 4.960938 6.117188 4.960938h10.410156c3.773437 0 6.691406-3.324219 6.195313-7.066406l-17.792969-134.878907c-4.066407 6.203125-8.40625 12.273438-13.066407 18.152344zm0 0" fill="currentColor" stroke="black" strokeWidth="10"/>

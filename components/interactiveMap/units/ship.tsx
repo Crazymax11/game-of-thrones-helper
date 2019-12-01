@@ -5,9 +5,9 @@ export default (props: Props) => (
   <svg
     x={props.x}
     y={props.y}
-    height="80"
+    height={props.size}
     viewBox="-13 0 512 512.00402"
-    width="80"
+    width={props.size}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
