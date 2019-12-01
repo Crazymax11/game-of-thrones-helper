@@ -24,6 +24,11 @@ export class RegionStore {
 
   @action
   addUnit(unit: ArmyUnit) {
+    // лимит снабжения - 4, нельзя больше юнитов в одном месте иметь
+    if (this.army.length >= 4) {
+      return;
+    }
+
     this.army.push(unit);
   }
 
