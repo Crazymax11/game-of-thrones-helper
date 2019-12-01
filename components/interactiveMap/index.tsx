@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as regions from "./regions";
 import withOwner, { connectStore } from "./region";
 
@@ -19,11 +19,13 @@ interface Props {
 }
 const Map = (props: Props) => {
   const [currentTooltip, setTooltip] = useState<{
-    x: string;
-    y: string;
+    x: number;
+    y: number;
     currentRegion: string;
   } | null>(null);
 
+
+  const svgRef = useRef<React.ReactSVG>(null);
   return (
     <div style={{ position: "relative", display: "block" }}>
       <img
@@ -34,6 +36,8 @@ const Map = (props: Props) => {
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       >
         <svg
+          // @ts-ignore
+          ref={svgRef}
           style={{ width: "100%", height: "100%" }}
           xmlns="http://www.w3.org/2000/svg"
           width="1464px"
@@ -42,7 +46,18 @@ const Map = (props: Props) => {
         >
           {maped.map((Comp, i) => (
             // @ts-ignore
-            <Comp key={i} showControls={args => setTooltip(args)} />
+            <Comp key={i} showControls={({currentRegion, x, y}) => {
+              console.log(svgRef);
+              // @ts-ignore ts говорит что возможно null и не знает что у свг элементов есть getBoundingClientRect
+              const {left: svgX, top: svgY, width: svgWidth, height: svgHeight} = svgRef.current.getBoundingClientRect();
+              
+              setTooltip({
+                currentRegion,
+                // приводим координату клика чтобы она была не относителньо страницы а относительно svg канваса, а затем масштабируем реальные пиксели к размеру viewbox svg
+                x: ((x - svgX - window.pageXOffset) * 1461 / svgWidth),
+                y: ((y - svgY - window.pageYOffset) * 2174 / svgHeight)
+              })
+            }} />
           ))}
           {currentTooltip && (
             <foreignObject
@@ -50,9 +65,9 @@ const Map = (props: Props) => {
                 width: "420px",
                 height: "420px",
                 // @ts-ignore
-                x: currentTooltip.x,
+                x: currentTooltip.x + 'px',
                 // @ts-ignore
-                y: currentTooltip.y,
+                y: currentTooltip.y + 'px',
                 color: "black",
               }}
             >

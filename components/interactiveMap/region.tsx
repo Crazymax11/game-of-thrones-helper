@@ -21,12 +21,12 @@ export default (region: RegionDeclaration) => (props: Props) => {
     <g className={`region _${props.owner}`}>
       <path
         className="region__form"
-        onClick={() =>
+        onClick={(e) =>{
           props.showControls({
-            x: region.armyStartX,
-            y: region.armyStartY
+            x: e.pageX,
+            y: e.pageY
           })
-        }
+        }}
         id={region.id}
         fill="currentColor"
         stroke="black"
