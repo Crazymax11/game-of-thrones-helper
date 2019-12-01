@@ -1,5 +1,5 @@
 import React from "react";
-import { Props } from "./unit";
+import { Props } from "./Unit";
 
 export default (props: Props) => (
   <svg
