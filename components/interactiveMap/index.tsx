@@ -114,17 +114,23 @@ const UnitControls = ({
   unit,
   addUnit,
   removeUnit,
-  owner
+  owner,
+  currentCount
 }: {
   unit: ArmyUnit;
   addUnit(): any;
   removeUnit(): any;
   owner: Owner;
+  currentCount: number;
 }) => (
   <div>
     <Unit owner={owner} size={80} unit={unit}/>
-    <button onClick={addUnit}> + </button>
-    <button onClick={removeUnit}> - </button>
+    <div style={{display: 'flex-inline', flexDirection: 'column', justifyContent: 'space-between'}}>
+      <button style={{ height: '35px', width: '35px'}} onClick={addUnit}> + </button>
+      <button style={{ height: '35px', width: '35px'}} onClick={removeUnit}> - </button>
+    </div>
+    <div style={{fontSize: '40px'}}> {currentCount}</div>
+    
   </div>
 );
 
@@ -195,6 +201,7 @@ const RegionConstrols = ({
         addUnit={() => addUnit(unit)}
         removeUnit={() => removeUnit(unit)}
         owner={owner}
+        currentCount={army.filter(u => u === unit).length}
       />
     ))}
     </div>
@@ -211,7 +218,7 @@ const connectTooltip = (store: MapStore) => observer((props: {
   onClose(): any;
 }) => (
   (<RegionConstrols
-    army={store.regions[props.id].army}
+    army={store.regions[props.id].army.slice()}
     owner={store.regions[props.id].owner}
     {...props}
   />)
