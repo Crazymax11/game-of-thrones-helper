@@ -45,13 +45,12 @@ const Map = (props: Props) => {
           viewBox="0 0 1464 2175"
         >
           {maped.map((Comp, i) => (
-            
             <Comp
               key={i}
               // @ts-ignore
               showControls={({ currentRegion, x, y }) => {
                 console.log(svgRef);
-                
+
                 const {
                   left: svgX,
                   top: svgY,
@@ -142,12 +141,10 @@ const UnitControls = ({
       }}
     >
       <button style={{ height: "35px", width: "35px" }} onClick={addUnit}>
-        {" "}
-        +{" "}
+        +
       </button>
       <button style={{ height: "35px", width: "35px" }} onClick={removeUnit}>
-        {" "}
-        -{" "}
+        -
       </button>
     </div>
     <div style={{ fontSize: "40px" }}> {currentCount}</div>
