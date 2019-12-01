@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import * as regions from "./regions";
 import withOwner, { connectStore } from "./region";
-import Unit from './units/Unit'
+import Unit from "./units/Unit";
 import "./styles.css";
 import { Owner, ArmyUnit } from "./types";
 import { MapStore } from "./store";
-import {observer} from 'mobx-react';
+import { observer } from "mobx-react";
 
 const store = new MapStore(Object.keys(regions));
 const maped = Object.entries(regions).map(([id, declaration]) => {
@@ -24,7 +24,6 @@ const Map = (props: Props) => {
     y: number;
     currentRegion: string;
   } | null>(null);
-
 
   const svgRef = useRef<React.ReactSVG>(null);
   return (
@@ -46,19 +45,29 @@ const Map = (props: Props) => {
           viewBox="0 0 1464 2175"
         >
           {maped.map((Comp, i) => (
-            // @ts-ignore
-            <Comp key={i} showControls={({currentRegion, x, y}) => {
-              console.log(svgRef);
-              // @ts-ignore ts говорит что возможно null и не знает что у свг элементов есть getBoundingClientRect
-              const {left: svgX, top: svgY, width: svgWidth, height: svgHeight} = svgRef.current.getBoundingClientRect();
-              
-              setTooltip({
-                currentRegion,
-                // приводим координату клика чтобы она была не относителньо страницы а относительно svg канваса, а затем масштабируем реальные пиксели к размеру viewbox svg
-                x: ((x - svgX - window.pageXOffset) * 1461 / svgWidth),
-                y: ((y - svgY - window.pageYOffset) * 2174 / svgHeight)
-              })
-            }} />
+            
+            <Comp
+              key={i}
+              // @ts-ignore
+              showControls={({ currentRegion, x, y }) => {
+                console.log(svgRef);
+                
+                const {
+                  left: svgX,
+                  top: svgY,
+                  width: svgWidth,
+                  height: svgHeight
+                  // @ts-ignore ts говорит что возможно null и не знает что у свг элементов есть getBoundingClientRect
+                } = svgRef.current.getBoundingClientRect();
+
+                setTooltip({
+                  currentRegion,
+                  // приводим координату клика чтобы она была не относителньо страницы а относительно svg канваса, а затем масштабируем реальные пиксели к размеру viewbox svg
+                  x: ((x - svgX - window.pageXOffset) * 1461) / svgWidth,
+                  y: ((y - svgY - window.pageYOffset) * 2174) / svgHeight
+                });
+              }}
+            />
           ))}
           {currentTooltip && (
             <foreignObject
@@ -66,10 +75,10 @@ const Map = (props: Props) => {
                 width: "420px",
                 height: "420px",
                 // @ts-ignore
-                x: currentTooltip.x + 'px',
+                x: currentTooltip.x + "px",
                 // @ts-ignore
-                y: currentTooltip.y + 'px',
-                color: "black",
+                y: currentTooltip.y + "px",
+                color: "black"
               }}
             >
               <Tooltip
@@ -124,13 +133,24 @@ const UnitControls = ({
   currentCount: number;
 }) => (
   <div>
-    <Unit owner={owner} size={80} unit={unit}/>
-    <div style={{display: 'flex-inline', flexDirection: 'column', justifyContent: 'space-between'}}>
-      <button style={{ height: '35px', width: '35px'}} onClick={addUnit}> + </button>
-      <button style={{ height: '35px', width: '35px'}} onClick={removeUnit}> - </button>
+    <Unit owner={owner} size={80} unit={unit} />
+    <div
+      style={{
+        display: "flex-inline",
+        flexDirection: "column",
+        justifyContent: "space-between"
+      }}
+    >
+      <button style={{ height: "35px", width: "35px" }} onClick={addUnit}>
+        {" "}
+        +{" "}
+      </button>
+      <button style={{ height: "35px", width: "35px" }} onClick={removeUnit}>
+        {" "}
+        -{" "}
+      </button>
     </div>
-    <div style={{fontSize: '40px'}}> {currentCount}</div>
-    
+    <div style={{ fontSize: "40px" }}> {currentCount}</div>
   </div>
 );
 
@@ -154,13 +174,13 @@ const RegionConstrols = ({
       width: "400px",
       height: "400px",
       backgroundColor: "white",
-      boxShadow: '10px 10px 10px black'
+      boxShadow: "10px 10px 10px black"
     }}
   >
     <div
       style={{
         height: "200px",
-        maxHeight: '200px',
+        maxHeight: "200px",
         display: "flex",
         flexDirection: "column"
       }}
@@ -172,7 +192,7 @@ const RegionConstrols = ({
           flexDirection: "column",
           flexWrap: "wrap",
           justifyContent: "center",
-          maxHeight: '200px',
+          maxHeight: "200px"
         }}
       >
         {([
@@ -194,35 +214,45 @@ const RegionConstrols = ({
     </div>
 
     <div>Army</div>
-    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: '200px'}}>
-    {(["knight", "soldier", "ship", "tower"] as ArmyUnit[]).map(unit => (
-      <UnitControls
-        unit={unit}
-        addUnit={() => addUnit(unit)}
-        removeUnit={() => removeUnit(unit)}
-        owner={owner}
-        currentCount={army.filter(u => u === unit).length}
-      />
-    ))}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+        height: "200px"
+      }}
+    >
+      {(["knight", "soldier", "ship", "tower"] as ArmyUnit[]).map(unit => (
+        <UnitControls
+          unit={unit}
+          addUnit={() => addUnit(unit)}
+          removeUnit={() => removeUnit(unit)}
+          owner={owner}
+          currentCount={army.filter(u => u === unit).length}
+        />
+      ))}
     </div>
-    
+
     <button onClick={onClose}> close </button>
   </div>
 );
 
-const connectTooltip = (store: MapStore) => observer((props: {
-  id: string;
-  setOwner(o: Owner): any;
-  addUnit(u: ArmyUnit): any;
-  removeUnit(u: ArmyUnit): any;
-  onClose(): any;
-}) => (
-  (<RegionConstrols
-    army={store.regions[props.id].army.slice()}
-    owner={store.regions[props.id].owner}
-    {...props}
-  />)
-))
+const connectTooltip = (store: MapStore) =>
+  observer(
+    (props: {
+      id: string;
+      setOwner(o: Owner): any;
+      addUnit(u: ArmyUnit): any;
+      removeUnit(u: ArmyUnit): any;
+      onClose(): any;
+    }) => (
+      <RegionConstrols
+        army={store.regions[props.id].army.slice()}
+        owner={store.regions[props.id].owner}
+        {...props}
+      />
+    )
+  );
 
 const Tooltip = connectTooltip(store);
 
